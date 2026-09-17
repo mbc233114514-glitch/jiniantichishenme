@@ -1,0 +1,70 @@
+<!-- pages/index/index.wxml 首页 -->
+<view class="container">
+
+  <!-- 顶部标题区 -->
+  <view class="header">
+    <view class="header-title">今天吃什么</view>
+    <view class="header-sub">泉纺北区校园美食助手</view>
+  </view>
+
+  <!-- 筛选 Tab -->
+  <view class="filter-bar">
+    <view wx:for="{{filterTabs}}" wx:key="key"
+          class="filter-item {{activeFilter === item.key ? 'active' : ''}}"
+          data-key="{{item.key}}" bindtap="onFilterChange">
+      {{item.label}}
+    </view>
+  </view>
+
+  <!-- 随机推荐卡片 -->
+  <view class="recommend-card {{isRolling ? 'rolling' : ''}}" wx:if="{{recommend}}">
+    <view class="rec-emoji">{{recommend.emoji}}</view>
+    <view class="rec-name">{{recommend.name}}</view>
+    <view class="rec-shop">
+      <text class="text-md">{{recommend.shop}}</text>
+      <text wx:if="{{recommend.floor}}" class="text-sm">· {{recommend.floor}}</text>
+      <text wx:if="{{recommend.location}}" class="text-sm">· {{recommend.location}}</text>
+    </view>
+    <view class="rec-meta">
+      <view class="rec-price">¥{{recommend.price}}</view>
+      <view class="rec-tags">
+        <text wx:for="{{recommend.tags}}" wx:key="*this" wx:for-item="tag" class="tag">{{tag}}</text>
+      </view>
+    </view>
+    <view class="rec-desc" wx:if="{{recommend.description}}">{{recommend.description}}</view>
+
+    <view class="rec-actions">
+      <view class="btn-roll" bindtap="rollRandom">
+        <text class="btn-icon">🎲</text> 换一个
+      </view>
+      <view class="btn-fav {{isFavorite ? 'faved' : ''}}" bindtap="toggleFav">
+        <text>{{isFavorite ? '❤️' : '🤍'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty">
+    <view class="empty-emoji">🍽️</view>
+    <view class="text-md">该范围暂无数据</view>
+  </view>
+
+  <!-- 快速入口 -->
+  <view class="section-title">快速入口</view>
+  <view class="quick-grid">
+    <view wx:for="{{quickEntries}}" wx:key="key"
+          class="quick-card"
+          data-path="{{item.path}}"
+          bindtap="goEntry">
+      <view class="quick-emoji" style="background:{{item.color}};">{{item.emoji}}</view>
+      <view class="quick-label">{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 使用提示 -->
+  <view class="tip-card">
+    <view class="text-sm">💡 点击"换一个"重新随机推荐</view>
+    <view class="text-sm">💡 切换上方Tab可缩小推荐范围</view>
+    <view class="text-sm">💡 下拉刷新可换新推荐</view>
+  </view>
+
+</view>

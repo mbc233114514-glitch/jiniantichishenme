@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/canteen/index",
+    "pages/brand/index",
+    "pages/street/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FF6B35",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "今天吃什么",
+    "backgroundColor": "#FFF8F3",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

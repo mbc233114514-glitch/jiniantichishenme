@@ -1,0 +1,61 @@
+/* pages/brand/index.wxss */
+.page-header {
+  padding: 20rpx 0 24rpx;
+}
+.page-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #FF6B35;
+}
+.page-sub {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+.brand-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+.brand-card {
+  width: calc(50% - 10rpx);
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx 24rpx;
+  box-sizing: border-box;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+.brand-emoji {
+  font-size: 80rpx;
+  margin-bottom: 12rpx;
+  line-height: 1;
+}
+.brand-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+.brand-type {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+  min-height: 48rpx;
+}
+.brand-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6rpx;
+  margin-bottom: 12rpx;
+}
+.brand-note {
+  background: #FFF8E1;
+  border-radius: 8rpx;
+  padding: 10rpx;
+  font-size: 20rpx;
+  color: #666;
+  text-align: left;
+}
