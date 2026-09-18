@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "今天吃什么",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "feed-confirm": "/components/feed-confirm/feed-confirm"
+  }
+}

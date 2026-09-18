@@ -1,0 +1,70 @@
+<!-- pages/canteen/index.wxml 食堂菜单 -->
+<view class="container">
+
+  <view class="page-header">
+    <view class="page-title">一食堂菜单</view>
+    <view class="page-sub">按楼层浏览各档口招牌菜</view>
+  </view>
+
+  <!-- 楼层切换 -->
+  <view class="floor-tabs">
+    <view wx:for="{{floorTabs}}" wx:key="*this"
+          class="floor-tab {{activeFloor === index ? 'active' : ''}}"
+          data-index="{{index}}" bindtap="onFloorChange">
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 楼层信息 -->
+  <view class="floor-info" wx:if="{{floors[activeFloor]}}">
+    <text class="text-md">{{floors[activeFloor].floor}} · 类型：{{floors[activeFloor].type}}</text>
+    <text class="text-sm">共 {{floors[activeFloor].stalls.length}} 个档口</text>
+  </view>
+
+  <!-- 档口列表 -->
+  <view class="stall-list">
+    <view wx:for="{{currentStalls}}" wx:key="id"
+          class="stall-card"
+          data-stall="{{item}}" bindtap="showDetail">
+      <view class="stall-emoji">{{item.emoji}}</view>
+      <view class="stall-info">
+        <view class="stall-name">{{item.name}}</view>
+        <view class="stall-sig">招牌：{{item.signature}}</view>
+        <view class="stall-tags">
+          <text wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t" class="tag">{{t}}</text>
+        </view>
+      </view>
+      <view class="stall-price">
+        <text class="price">¥{{item.price}}</text>
+        <text class="text-sm">起</text>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 档口详情弹层 -->
+<view class="popup-mask" wx:if="{{detailPopup}}" bindtap="closeDetail">
+  <view class="popup-card" catchtap="stopPropagation">
+    <view class="popup-emoji">{{detailPopup.emoji}}</view>
+    <view class="popup-name">{{detailPopup.name}}</view>
+    <view class="popup-sig">招牌菜：{{detailPopup.signature}}</view>
+    <view class="popup-row">
+      <text class="text-md">参考价格</text>
+      <text class="popup-price">¥{{detailPopup.price}}</text>
+    </view>
+    <view class="popup-row">
+      <text class="text-md">标签</text>
+      <view class="popup-tags">
+        <text wx:for="{{detailPopup.tags}}" wx:key="*this" wx:for-item="t" class="tag">{{t}}</text>
+      </view>
+    </view>
+    <view class="popup-note" wx:if="{{detailPopup.note}}">💡 {{detailPopup.note}}</view>
+    <view class="popup-actions">
+      <view class="popup-btn-fav {{detailPopup.isFavorite ? 'faved' : ''}}" bindtap="toggleFav">
+        {{detailPopup.isFavorite ? '❤️ 已收藏' : '🤍 收藏'}}
+      </view>
+      <view class="popup-btn-close" bindtap="closeDetail">关闭</view>
+    </view>
+  </view>
+</view>

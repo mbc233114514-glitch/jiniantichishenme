@@ -1,0 +1,21 @@
+<!-- pages/brand/index.wxml 品牌档口 -->
+<view class="container">
+
+  <view class="page-header">
+    <view class="page-title">缤纷第三食堂</view>
+    <view class="page-sub">品牌档口，饮品 / 小吃 / 水果 / 零食</view>
+  </view>
+
+  <view class="brand-grid">
+    <view wx:for="{{stalls}}" wx:key="id" class="brand-card">
+      <view class="brand-emoji">{{item.emoji}}</view>
+      <view class="brand-name">{{item.name}}</view>
+      <view class="brand-type">{{item.type}}</view>
+      <view class="brand-tags">
+        <text wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t" class="tag tag-yellow">{{t}}</text>
+      </view>
+      <view class="brand-note" wx:if="{{item.note}}">💡 {{item.note}}</view>
+    </view>
+  </view>
+
+</view>

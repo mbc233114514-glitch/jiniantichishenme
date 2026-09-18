@@ -1,0 +1,387 @@
+/* pages/pet/index.wxss */
+.pet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 10rpx 20rpx;
+}
+.pet-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #FF9EC4;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.pet-name .pig-icon {
+  margin-right: 10rpx;
+}
+.name-text {
+  flex: 1;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #FF9EC4;
+}
+.pet-name .edit-icon {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  opacity: 0.6;
+}
+.pet-level {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #FF9EC4 0%, #FF6B35 100%);
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+}
+
+/* 宠物舞台 */
+.pet-stage {
+  text-align: center;
+  padding: 50rpx 30rpx;
+}
+.pet-body {
+  position: relative;
+  display: inline-block;
+}
+/* 真实小猪图片 */
+.pet-img {
+  width: 360rpx;
+  height: 360rpx;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.pet-state-label {
+  margin-top: 24rpx;
+}
+.state-badge {
+  display: inline-block;
+  background: #FF9EC4;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 4rpx 20rpx;
+  border-radius: 20rpx;
+  margin-right: 12rpx;
+}
+.state-tip {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 进度条 */
+.attrs {
+  padding: 24rpx;
+}
+.attr-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18rpx;
+}
+.attr-row:last-of-type { margin-bottom: 0; }
+.attr-icon {
+  font-size: 28rpx;
+  width: 50rpx;
+}
+.attr-label {
+  font-size: 26rpx;
+  color: #666;
+  width: 100rpx;
+}
+.attr-bar {
+  flex: 1;
+  height: 16rpx;
+  background: #f0f0f0;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin: 0 12rpx;
+}
+.attr-fill {
+  height: 100%;
+  border-radius: 8rpx;
+  transition: width 0.4s ease-out;
+}
+.attr-val {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333;
+  width: 60rpx;
+  text-align: right;
+}
+.exp-row {
+  display: flex;
+  align-items: center;
+  margin-top: 18rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+.exp-label {
+  font-size: 26rpx;
+  color: #FFA500;
+  width: 100rpx;
+}
+.exp-bar {
+  flex: 1;
+  height: 16rpx;
+  background: #FFF0E5;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin: 0 12rpx;
+}
+.exp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFA500, #FF6B35);
+  border-radius: 8rpx;
+  transition: width 0.4s ease-out;
+}
+.exp-val {
+  font-size: 22rpx;
+  color: #999;
+  width: 120rpx;
+  text-align: right;
+}
+
+/* 互动按钮 */
+.actions {
+  display: flex;
+  gap: 20rpx;
+  margin: 10rpx 0 24rpx;
+}
+.action-btn {
+  flex: 1;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx 0;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.btn-emoji {
+  font-size: 48rpx;
+  margin-bottom: 8rpx;
+}
+.btn-label {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.btn-feed { color: #FF6B35; }
+.btn-play { color: #4CAF50; }
+.btn-clean { color: #2196F3; }
+
+/* 已解锁菜品 */
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+.section-hint {
+  text-align: center;
+  margin-top: 16rpx;
+}
+.unlocked-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+.unlocked-item {
+  width: calc(33.33% - 10rpx);
+  background: #FFF8F3;
+  border-radius: 12rpx;
+  padding: 16rpx 10rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.unlocked-emoji {
+  font-size: 36rpx;
+  display: block;
+  margin-bottom: 4rpx;
+}
+.unlocked-name {
+  font-size: 22rpx;
+  color: #333;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.unlocked-price {
+  font-size: 20rpx;
+  color: #4CAF50;
+  display: block;
+  margin-top: 2rpx;
+}
+
+/* 喂食记录 */
+.records {
+  padding: 24rpx;
+}
+.record-list {
+  max-height: 300rpx;
+  overflow-y: auto;
+}
+.record-item {
+  display: flex;
+  align-items: center;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.record-emoji {
+  font-size: 28rpx;
+  margin-right: 14rpx;
+}
+.record-name {
+  flex: 1;
+  font-size: 26rpx;
+  color: #333;
+}
+.record-time {
+  margin-left: 12rpx;
+}
+
+.bottom-links {
+  display: flex;
+  justify-content: center;
+  gap: 60rpx;
+  padding: 40rpx 0 60rpx;
+}
+.reset-hint {
+  text-align: center;
+  color: #ccc;
+}
+
+/* —— 宠物动作动画 —— */
+.anim-excited { animation: animExcited 1.2s ease-in-out infinite; }
+.anim-happy   { animation: animHappy 0.6s ease-in-out 2; }
+.anim-hungry  { animation: animHungry 0.8s ease-in-out infinite; }
+.anim-bored   { animation: animBored 1.5s ease-in-out infinite; opacity: 0.85; }
+.anim-dirty   { animation: animDirty 2s ease-in-out infinite; }
+.anim-sleeping{ animation: animSleep 3s ease-in-out infinite; }
+.anim-eating  { animation: animEat 0.6s ease-in-out 3; }
+.anim-cleaning{ animation: animClean 0.4s ease-in-out 4; }
+
+@keyframes animExcited {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-12rpx) rotate(3deg); }
+}
+@keyframes animHappy {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-20rpx) scale(1.05); }
+}
+@keyframes animHungry {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(0.95); }
+}
+@keyframes animBored {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg); }
+}
+@keyframes animDirty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(4rpx); }
+}
+@keyframes animSleep {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(0.98); }
+}
+@keyframes animEat {
+  0%   { transform: scale(1) rotate(0deg); }
+  25%  { transform: scale(1.1) rotate(-5deg); }
+  50%  { transform: scale(0.95) rotate(5deg); }
+  75%  { transform: scale(1.08) rotate(-3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes animClean {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(8rpx); }
+}
+
+/* —— 改名底部弹窗 —— */
+.rename-mask {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+.rename-mask.show {
+  display: flex;
+}
+.rename-sheet {
+  width: 100%;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 40rpx 40rpx calc(40rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+.rename-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+.rename-tip {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  margin-top: 12rpx;
+}
+.rename-input-wrap {
+  margin-top: 30rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+}
+.rename-input {
+  height: 88rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.rename-placeholder {
+  color: #bbb;
+  font-size: 30rpx;
+}
+.rename-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16rpx;
+  min-height: 36rpx;
+}
+.rename-count {
+  font-size: 24rpx;
+  color: #999;
+}
+.rename-error {
+  font-size: 24rpx;
+  color: #F44336;
+  font-weight: bold;
+}
+.rename-btns {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 30rpx;
+}
+.rename-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.rename-btn.cancel {
+  background: #f0f0f0;
+  color: #666;
+}
+.rename-btn.confirm {
+  background: linear-gradient(135deg, #FF9EC4 0%, #FF6B35 100%);
+  color: #fff;
+}

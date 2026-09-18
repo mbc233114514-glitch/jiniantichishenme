@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "泉纺小猪",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "feed-confirm": "/components/feed-confirm/feed-confirm"
+  }
+}

@@ -1,0 +1,32 @@
+<!-- components/feed-confirm/feed-confirm.wxml -->
+<view class="mask" wx:if="{{show}}" catchtouchmove="stopPropagation" bindtap="onCancel">
+  <view class="popup" catchtap="stopPropagation">
+    <view class="popup-title">🐷 分享给泉纺小猪</view>
+    <view class="popup-dish" wx:if="{{dish}}">
+      <view class="dish-emoji">{{dish.emoji || '🍽️'}}</view>
+      <view class="dish-info">
+        <view class="dish-name">{{dish.name}}</view>
+        <view class="dish-desc" wx:if="{{dish.description}}">{{dish.description}}</view>
+        <view class="dish-tags">
+          <text wx:for="{{dish.tags}}" wx:key="*this" wx:for-item="t" class="tag">{{t}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="popup-effect" wx:if="{{effect}}">
+      <view class="effect-label">喂食效果预览</view>
+      <view class="effect-row">
+        <text>🍚 饱食度</text><text class="effect-val">+{{effect.satiety}}</text>
+      </view>
+      <view class="effect-row">
+        <text>❤️ 心情值</text><text class="effect-val">+{{effect.mood}}</text>
+      </view>
+      <view class="effect-row">
+        <text>⭐ 经验值</text><text class="effect-val">+{{effect.exp}}</text>
+      </view>
+    </view>
+    <view class="popup-actions">
+      <view class="btn-cancel" bindtap="onCancel">再想想</view>
+      <view class="btn-confirm" bindtap="onConfirm">分享给小猪</view>
+    </view>
+  </view>
+</view>

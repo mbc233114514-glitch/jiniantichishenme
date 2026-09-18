@@ -1,0 +1,52 @@
+<!-- pages/cloud-admin/index.wxml 云资源管理 -->
+<view class="container">
+  <view class="header">
+    <view class="title">☁️ 云资源管理</view>
+    <view class="status {{cloudReady ? 'ok' : 'no'}}">
+      云环境：{{cloudReady ? '已就绪' : '未就绪'}}
+    </view>
+  </view>
+
+  <!-- 操作区 -->
+  <view class="card">
+    <view class="step">
+      <view class="step-title">① 初始化云数据库（推荐）</view>
+      <view class="step-desc">调用 initData 云函数，幂等写入 foods/canteens/brands/streets/links 五个集合。需先右键「上传并部署」initData 云函数。</view>
+      <view class="btn primary" bindtap="seedByFunction">一键初始化数据库（云函数）</view>
+    </view>
+
+    <view class="step">
+      <view class="step-title">② 宠物图片上传云存储</view>
+      <view class="step-desc">把 assets/pet 下 6 张小猪图上传到云存储 pet/ 目录，并将 fileID 写入 config 集合。宠物页将自动改用 cloud:// 图片。</view>
+      <view class="btn pink" bindtap="uploadPetImages">上传 6 张宠物图到云存储</view>
+    </view>
+
+    <view class="step">
+      <view class="step-title">③ 备用方案：本地直写</view>
+      <view class="step-desc">云函数未部署时的应急方案，从小程序端直接写库。需先在云开发控制台把 5 个集合权限改为「所有用户可读，仅创建者可写」。</view>
+      <view class="btn ghost" bindtap="seedLocal">本地直写种子数据</view>
+    </view>
+
+    <view class="step">
+      <view class="step-title">④ 检查云端数据</view>
+      <view class="btn ghost" bindtap="checkCounts">查询各集合记录数</view>
+      <view class="counts" wx:if="{{counts.foods !== undefined}}">
+        <text>foods: {{counts.foods}}</text>
+        <text>canteens: {{counts.canteens}}</text>
+        <text>brands: {{counts.brands}}</text>
+        <text>streets: {{counts.streets}}</text>
+        <text>links: {{counts.links}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 日志区 -->
+  <view class="log-card" wx:if="{{log}}">
+    <view class="log-head">执行日志</view>
+    <scroll-view scroll-y class="log-box">
+      <text class="log-text">{{log}}</text>
+    </scroll-view>
+  </view>
+
+  <view class="tip">未做任何云端操作前，小程序所有页面照常使用本地 mock 数据运行。</view>
+</view>

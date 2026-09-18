@@ -1,0 +1,9 @@
+{
+  "name": "initData",
+  "version": "1.0.0",
+  "description": "一键初始化云数据库种子数据 / 保存宠物图片 fileID 配置",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

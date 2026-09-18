@@ -1,0 +1,41 @@
+/* app.wxss 全局样式 */
+page {
+  background-color: #FFF8F3;
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", Helvetica, sans-serif;
+  color: #333;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+/* 通用卡片 */
+.card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.title-lg { font-size: 40rpx; font-weight: bold; color: #1a1a1a; }
+.title-md { font-size: 30rpx; font-weight: 500; color: #333; }
+.text-sm { font-size: 22rpx; color: #999; }
+.text-md { font-size: 26rpx; color: #666; }
+
+.container { padding: 24rpx; }
+
+/* 通用标签 */
+.tag {
+  display: inline-block;
+  font-size: 22rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 10rpx;
+  background: #FFF0E5;
+  color: #FF6B35;
+  margin-right: 8rpx;
+}
+.tag-green { background: #E8F5E9; color: #4CAF50; }
+.tag-red   { background: #FFEBEE; color: #F44336; }
+.tag-yellow{ background: #FFF8E1; color: #FFA500; }
+
+/* 价格颜色 */
+.price { color: #4CAF50; font-weight: bold; }

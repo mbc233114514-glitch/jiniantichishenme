@@ -1,0 +1,83 @@
+<!-- pages/index/index.wxml 首页 -->
+<view class="container">
+
+  <!-- 顶部标题区 -->
+  <view class="header">
+    <view class="header-title">今天吃什么</view>
+    <view class="header-sub">泉纺北区校园美食助手 · 🐷 养一只小猪陪你选</view>
+  </view>
+
+  <!-- 筛选 Tab -->
+  <scroll-view scroll-x class="filter-bar" enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{filterTabs}}" wx:key="key"
+          class="filter-item {{activeFilter === item.key ? 'active' : ''}}"
+          data-key="{{item.key}}" bindtap="onFilterChange">
+      {{item.label}}
+    </view>
+  </scroll-view>
+
+  <!-- 随机推荐卡片 -->
+  <view class="recommend-card {{isRolling ? 'rolling' : ''}}" wx:if="{{recommend}}">
+    <view class="rec-emoji">{{recommend.emoji}}</view>
+    <view class="rec-name">{{recommend.name}}</view>
+    <view class="rec-shop">
+      <text class="text-md">{{recommend.shop}}</text>
+      <text wx:if="{{recommend.floor}}" class="text-sm">· {{recommend.floor}}</text>
+      <text wx:if="{{recommend.location}}" class="text-sm">· {{recommend.location}}</text>
+      <text wx:if="{{recommend.type}}" class="text-sm">· {{recommend.type}}</text>
+    </view>
+    <view class="rec-meta">
+      <view class="rec-price">¥{{recommend.price}}</view>
+      <view class="rec-tags" wx:if="{{recommend.tags}}">
+        <text wx:for="{{recommend.tags}}" wx:key="*this" wx:for-item="tag" class="tag">{{tag}}</text>
+      </view>
+    </view>
+    <view class="rec-desc" wx:if="{{recommend.description || recommend.reason}}">{{recommend.description || recommend.reason}}</view>
+
+    <!-- 链接店铺 → 显示跳转按钮 -->
+    <view wx:if="{{activeFilter === '链接'}}" class="rec-actions">
+      <view class="btn-jump" bindtap="goLinkDish">🔗 前往店铺</view>
+    </view>
+
+    <!-- 普通菜品 → 换一个 + 我吃完了 + 收藏 -->
+    <view wx:else class="rec-actions">
+      <view class="btn-roll" bindtap="rollRandom">
+        <text class="btn-icon">🎲</text> 换一个
+      </view>
+      <view class="btn-ate" bindtap="onAteIt">
+        <text>🐷 我吃完了</text>
+      </view>
+      <view class="btn-fav {{isFavorite ? 'faved' : ''}}" bindtap="toggleFav">
+        <text>{{isFavorite ? '❤️' : '🤍'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty">
+    <view class="empty-emoji">🍽️</view>
+    <view class="text-md">该范围暂无数据</view>
+  </view>
+
+  <!-- 快速入口 -->
+  <view class="section-title">快速入口</view>
+  <scroll-view scroll-x class="quick-scroll" enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{quickEntries}}" wx:key="key"
+          class="quick-card"
+          data-path="{{item.path}}"
+          bindtap="goEntry">
+      <view class="quick-emoji" style="background:{{item.color}};">{{item.emoji}}</view>
+      <view class="quick-label">{{item.label}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 使用提示 -->
+  <view class="tip-card">
+    <view class="text-sm">💡 点"换一个"随机选，点"🐷 我吃完了"喂小猪</view>
+    <view class="text-sm">💡 切换 Tab 缩小推荐范围，选"链接"可跳外部店铺</view>
+  </view>
+
+</view>
+
+<!-- 喂食确认弹窗 -->
+<feed-confirm show="{{showFeedConfirm}}" dish="{{recommend}}"
+              bind:feedconfirm="onFeedConfirm" bind:feedcancel="onFeedCancel" />

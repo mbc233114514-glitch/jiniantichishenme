@@ -1,0 +1,31 @@
+<!-- pages/street/index.wxml 校外小吃街 -->
+<view class="container">
+
+  <view class="page-header">
+    <view class="page-title">校门口"第二食堂"</view>
+    <view class="page-sub">小吃街美食推荐 · 标记"想去"不错过</view>
+  </view>
+
+  <view class="street-list">
+    <view wx:for="{{foods}}" wx:key="id" class="street-card">
+      <view class="street-emoji">{{item.emoji}}</view>
+      <view class="street-info">
+        <view class="street-name">{{item.name}}</view>
+        <view class="street-feature">特色：{{item.feature}}</view>
+        <view class="street-loc">📍 {{item.location}}</view>
+        <view class="street-tags">
+          <text wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t" class="tag">{{t}}</text>
+        </view>
+        <view class="street-note" wx:if="{{item.note}}">💡 {{item.note}}</view>
+      </view>
+      <view class="want-btn {{item.isFavorite ? 'wanted' : ''}}"
+            data-id="{{item.id}}" bindtap="toggleWant">
+        <text class="want-icon">{{item.isFavorite ? '❤️' : '🤍'}}</text>
+        <text class="want-text">{{item.isFavorite ? '已想去' : '想去'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tip">💡 点击右侧"想去"标记收藏，记录你的美食清单</view>
+
+</view>
