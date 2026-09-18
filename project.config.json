@@ -1,6 +1,7 @@
 {
   "description": "今天吃什么 - 泉纺北区校园美食助手",
   "miniprogramRoot": "./",
+  "cloudfunctionRoot": "cloudfunctions/",
   "compileType": "miniprogram",
   "setting": {
     "urlCheck": false,
@@ -28,16 +29,19 @@
     "minifyWXSS": true,
     "minifyWXML": true,
     "localPlugins": false,
-    "condition": false
+    "condition": true
   },
   "appid": "wxb19c249779bd37a0",
   "projectname": "jintian-chi-shenme",
   "libVersion": "2.33.0",
   "condition": {},
-  "simulatorPluginLibVersion": {},
+  "simulatorPluginLibVersion": {
+    "wxext14566970e7e9f62": "2.27.3"
+  },
   "packOptions": {
     "ignore": [],
     "include": []
   },
-  "editorSetting": {}
+  "editorSetting": {},
+  "projectArchitecture": "multiPlatform"
 }

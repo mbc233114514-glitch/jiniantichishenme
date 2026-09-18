@@ -1,9 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/pet/index",
+    "pages/link-dish/index",
+    "pages/webview/index",
     "pages/canteen/index",
     "pages/brand/index",
-    "pages/street/index"
+    "pages/street/index",
+    "pages/cloud-admin/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FF6B35",
@@ -14,5 +18,6 @@
     "enablePullDownRefresh": true
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }

@@ -1,0 +1,23 @@
+<!-- pages/webview/index.wxml -->
+<view class="webview-wrap" wx:if="{{url && !loadError}}">
+  <web-view src="{{url}}" binderror="onWebviewError" bindload="onWebviewLoad" />
+</view>
+
+<!-- 错误兜底 -->
+<view class="webview-error" wx:elif="{{url && loadError}}">
+  <view class="err-emoji">🌐</view>
+  <view class="err-title text-md">页面加载失败</view>
+  <view class="err-desc text-sm">
+    测试号无法直接打开外部网页，请在小程序后台配置业务域名。
+  </view>
+  <view class="err-desc text-sm">
+    或复制链接到浏览器打开：{{url}}
+  </view>
+  <view class="err-btn" bindtap="copyLink">📋 复制链接</view>
+</view>
+
+<!-- 无效链接 -->
+<view class="webview-empty" wx:else>
+  <view class="empty-emoji">❓</view>
+  <view class="empty-text text-md">无效链接</view>
+</view>

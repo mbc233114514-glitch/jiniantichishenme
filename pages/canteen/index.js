@@ -1,5 +1,5 @@
 // pages/canteen/index.js 食堂菜单浏览
-const mock = require('../../utils/mock.js');
+const db = require('../../utils/db.js');
 const app = getApp();
 
 Page({
@@ -12,11 +12,14 @@ Page({
   },
 
   onLoad() {
-    const floors = mock.canteenData;
-    this.setData({
-      floors,
-      floorTabs: floors.map(f => f.floor),
-      currentStalls: floors[0].stalls
+    // 云数据库优先，失败自动回退本地 mock
+    db.getCanteens().then(floors => {
+      if (!floors || !floors.length) return;
+      this.setData({
+        floors,
+        floorTabs: floors.map(f => f.floor),
+        currentStalls: floors[0].stalls
+      });
     });
   },
 

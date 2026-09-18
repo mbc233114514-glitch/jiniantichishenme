@@ -1,0 +1,75 @@
+/* pages/link-dish/index.wxss */
+.page-header {
+  padding: 20rpx 0 24rpx;
+}
+.page-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #FF6B35;
+}
+.page-sub {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+.link-list {
+  margin-top: 10rpx;
+}
+.link-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+.link-emoji {
+  width: 100rpx;
+  height: 100rpx;
+  background: #FFF0E5;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+.link-info { flex: 1; }
+.link-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+.link-type {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 6rpx;
+}
+.link-reason {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+.link-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rpx;
+}
+.link-price {
+  text-align: right;
+  flex-shrink: 0;
+}
+.link-price .price {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #4CAF50;
+  display: block;
+}
+.link-go {
+  font-size: 32rpx;
+  color: #ccc;
+}

@@ -1,14 +1,28 @@
-# Windows
-[Dd]esktop.ini
-Thumbs.db
-$RECYCLE.BIN/
-
-# macOS
-.DS_Store
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-
-# Node.js
+# 依赖
 node_modules/
+miniprogram_npm/
+package-lock.json
+
+# 微信开发者工具缓存
+.cache/
+project.private.config.json
+
+# uni-app 残留（不是本项目所需）
+miniapp/
+i18n/
+*.miniapp.json
+
+# 脚本/工具
+*.ps1
+
+# 日志
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# 云函数本地依赖（部署时云端安装）
+cloudfunctions/*/node_modules/

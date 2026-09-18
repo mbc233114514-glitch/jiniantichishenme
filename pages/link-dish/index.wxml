@@ -1,0 +1,29 @@
+<!-- pages/link-dish/index.wxml 链接菜品 -->
+<view class="container">
+
+  <view class="page-header">
+    <view class="page-title">🔗 链接店铺</view>
+    <view class="page-sub">点击卡片可跳转到店铺页面</view>
+  </view>
+
+  <view class="link-list">
+    <view wx:for="{{list}}" wx:key="id"
+          class="link-card"
+          data-url="{{item.url}}" data-name="{{item.name}}" data-appid="{{item.appId}}" bindtap="goJump">
+      <view class="link-emoji">{{item.emoji}}</view>
+      <view class="link-info">
+        <view class="link-name">{{item.name}}</view>
+        <view class="link-type">{{item.type}}</view>
+        <view class="link-reason">{{item.reason}}</view>
+        <view class="link-tags">
+          <text wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t" class="tag">{{t}}</text>
+        </view>
+      </view>
+      <view class="link-price">
+        <text class="price">{{item.price}}</text>
+        <text class="link-go">></text>
+      </view>
+    </view>
+  </view>
+
+</view>

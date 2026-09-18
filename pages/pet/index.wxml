@@ -1,0 +1,144 @@
+<!-- pages/pet/index.wxml 电子宠物页 -->
+<view class="container">
+
+  <!-- 顶部信息栏 -->
+  <view class="pet-header" wx:if="{{petData}}">
+    <view class="pet-name" bindtap="onTapName">
+      <text class="pig-icon">🐷</text>
+      <text class="name-text">{{pigName}}</text>
+      <text class="edit-icon">✏️</text>
+    </view>
+    <view class="pet-level">Lv.{{petData.level}}</view>
+  </view>
+
+  <!-- 宠物形象区 -->
+  <view class="pet-stage card">
+    <view class="pet-body {{animClass}}" wx:if="{{stateInfo}}">
+      <!-- 真实小猪图片：根据状态动态切换 -->
+      <image src="{{currentImg}}" class="pet-img" mode="aspectFit" />
+    </view>
+    <view class="pet-state-label" wx:if="{{stateInfo}}">
+      <text class="state-badge">{{stateInfo.label}}</text>
+      <text class="state-tip">{{stateInfo.tip}}</text>
+    </view>
+  </view>
+
+  <!-- 属性进度条 -->
+  <view class="attrs card" wx:if="{{petData}}">
+    <view class="attr-row">
+      <text class="attr-icon">🍚</text>
+      <text class="attr-label">饱食度</text>
+      <view class="attr-bar">
+        <view class="attr-fill" style="width:{{petData.satiety}}%; background:#FF9800;"></view>
+      </view>
+      <text class="attr-val">{{petData.satiety}}</text>
+    </view>
+    <view class="attr-row">
+      <text class="attr-icon">❤️</text>
+      <text class="attr-label">心情值</text>
+      <view class="attr-bar">
+        <view class="attr-fill" style="width:{{petData.mood}}%; background:#E91E63;"></view>
+      </view>
+      <text class="attr-val">{{petData.mood}}</text>
+    </view>
+    <view class="attr-row">
+      <text class="attr-icon">💧</text>
+      <text class="attr-label">清洁度</text>
+      <view class="attr-bar">
+        <view class="attr-fill" style="width:{{petData.cleanliness}}%; background:#2196F3;"></view>
+      </view>
+      <text class="attr-val">{{petData.cleanliness}}</text>
+    </view>
+    <!-- 经验条 -->
+    <view class="exp-row">
+      <text class="exp-label">⭐ 经验</text>
+      <view class="exp-bar">
+        <view class="exp-fill" style="width:{{petData.exp / (petData.level * 50) * 100}}%;"></view>
+      </view>
+      <text class="exp-val">{{petData.exp}}/{{petData.level * 50}}</text>
+    </view>
+  </view>
+
+  <!-- 互动按钮 -->
+  <view class="actions">
+    <view class="action-btn btn-feed" bindtap="onManualFeed" data-id="{{unlockedFeedList[0].id}}" wx:if="{{unlockedFeedList.length > 0}}">
+      <text class="btn-emoji">🍽️</text>
+      <text class="btn-label">喂食</text>
+    </view>
+    <view class="action-btn btn-play" bindtap="onPlay">
+      <text class="btn-emoji">🎾</text>
+      <text class="btn-label">玩耍</text>
+    </view>
+    <view class="action-btn btn-clean" bindtap="onClean">
+      <text class="btn-emoji">🛁</text>
+      <text class="btn-label">清洁</text>
+    </view>
+  </view>
+
+  <!-- 已解锁菜品（喂食选择） -->
+  <view class="unlocked card" wx:if="{{unlockedFeedList.length > 0}}">
+    <view class="section-title">🍽️ 已解锁菜品（点我喂食）</view>
+    <view class="unlocked-list">
+      <view wx:for="{{unlockedFeedList}}" wx:key="id"
+            class="unlocked-item"
+            data-id="{{item.id}}" bindtap="onManualFeed">
+        <text class="unlocked-emoji">{{item.emoji || '🍽️'}}</text>
+        <text class="unlocked-name">{{item.name}}</text>
+        <text class="unlocked-price">¥{{item.price}}</text>
+      </view>
+    </view>
+    <view class="section-hint text-sm">在首页选菜后点"我吃完了"可解锁更多菜品</view>
+  </view>
+
+  <!-- 喂食记录 -->
+  <view class="records card" wx:if="{{petData && petData.fedRecords && petData.fedRecords.length > 0}}">
+    <view class="section-title">📋 最近喂食记录</view>
+    <view class="record-list">
+      <view wx:for="{{petData.fedRecords}}" wx:key="time" class="record-item">
+        <text class="record-emoji">{{item.emoji}}</text>
+        <text class="record-name">{{item.dishName}}</text>
+        <text class="record-time text-sm">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-links">
+    <view class="reset-hint text-sm" bindtap="goCloudAdmin">☁️ 云资源管理</view>
+    <view class="reset-hint text-sm" bindtap="onReset">重置宠物数据</view>
+  </view>
+
+</view>
+
+<!-- 喂食确认弹窗 -->
+<feed-confirm show="{{showFeedConfirm}}" dish="{{pendingDish}}"
+              bind:feedconfirm="onFeedConfirm" bind:feedcancel="onFeedCancel" />
+
+<!-- 改名底部弹窗 -->
+<view class="rename-mask {{showRename ? 'show' : ''}}" bindtap="onRenameCancel" wx:if="{{showRename}}">
+  <view class="rename-sheet" catchtap="noop">
+    <view class="rename-title">给小猪改个名字</view>
+    <view class="rename-tip">仅限中文、英文、数字，最长 8 个字符</view>
+
+    <view class="rename-input-wrap">
+      <input class="rename-input"
+             value="{{renameValue}}"
+             placeholder="输入新名字"
+             placeholder-class="rename-placeholder"
+             maxlength="8"
+             confirm-type="done"
+             bindinput="onRenameInput"
+             bindconfirm="onRenameConfirm"
+             focus="{{showRename}}" />
+    </view>
+
+    <view class="rename-meta">
+      <text class="rename-count">{{renameValue.length}}/8</text>
+      <text class="rename-error" wx:if="{{renameError}}">{{renameError}}</text>
+    </view>
+
+    <view class="rename-btns">
+      <view class="rename-btn cancel" bindtap="onRenameCancel">取消</view>
+      <view class="rename-btn confirm" bindtap="onRenameConfirm">确认</view>
+    </view>
+  </view>
+</view>
